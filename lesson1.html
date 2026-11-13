@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 1: What Is a Buffer? — Buffer pH</title>
+<style>
+  body { font: 16px/1.6 system-ui, -apple-system, Segoe UI, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+  h1 { font-size: 2rem; margin-bottom: 0.5rem; color: #e67e22; }
+  .subtitle { color: #555; margin-bottom: 2rem; }
+  nav { margin: 2rem 0; padding: 1rem; background: #f5f9f8; border-radius: 8px; }
+  nav a { display: inline-block; margin-right: 1rem; padding: 0.5rem 1rem; background: #0d6a65; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; }
+  nav a:hover { background: #0a5250; }
+  .card { border: 1px solid #e0e8e7; border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; background: #fafbfb; }
+  .card h2 { margin-top: 0; font-size: 1.3rem; color: #e67e22; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e8e7; color: #666; font-size: 0.9rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin: 0.5rem 0; }
+  .key { background: #eef7f6; border-left: 4px solid #e67e22; padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
+  .key strong { color: #e67e22; }
+  pre { background: #1e2a2e; color: #e3ecec; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+  .socratic { border: 1px solid #c9d6d4; border-left: 4px solid #e67e22; border-radius: 10px; padding: 14px 16px; margin: 20px 0; background: #f6faf9; color: #15242a; }
+  @media (prefers-color-scheme:dark) {
+    body { color: #e3ecec; background: #0f1416; }
+    nav { background: #172528; }
+    .card { background: #172528; border-color: #27383e; }
+    .card h2 { color: #62c4ba; }
+    footer { border-color: #27383e; }
+    .key { background: #11282d; border-left-color: #62c4ba; }
+    .key strong { color: #62c4ba; }
+    pre { background: #11282d; }
+    .socratic { background: #152328; color: #e3ecec; border-color: #27383e; border-left-color: #62c4ba; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Lesson 1: What Is a Buffer?</h1>
+  <p class="subtitle">Understanding the components and mechanism of a buffer solution</p>
+
+  <nav>
+    <a href="index.html">← Overview</a>
+    <a href="lesson2.html">Lesson 2: Henderson–Hasselbalch →</a>
+  </nav>
+
+  <section class="card">
+    <h2>The Problem: Pure Water Has No pH Stability</h2>
+    <p>Add a single drop of 0.1 M HCl to 100 mL of pure water, and the pH plunges from 7 to about 3. Add a drop of 0.1 M NaOH, and it soars to about 11. Water alone cannot resist pH change — it has no reservoir of acid or base to neutralize what you add.</p>
+    <p>A <strong>buffer</strong> solves this. It is a solution that resists pH change when small amounts of acid or base are added.</p>
+  </section>
+
+  <section class="card">
+    <h2>What a Buffer Contains</h2>
+    <p>A classic buffer has <strong>two components</strong>:</p>
+    <ul>
+      <li>A <strong>weak acid</strong> (HA) — partially dissociated, so it can neutralize added base</li>
+      <li>Its <strong>conjugate base</strong> (A⁻) — usually supplied as a salt like NaA, so it can neutralize added acid</li>
+    </ul>
+    <p>Common examples:</p>
+    <ul>
+      <li>Acetic acid (CH₃COOH) + sodium acetate (CH₃COONa)</li>
+      <li>Ammonia (NH₃) + ammonium chloride (NH₄Cl) — here the weak acid is NH₄⁺, the conjugate base is NH₃</li>
+      <li>Carbonic acid (H₂CO₃) + bicarbonate (HCO₃⁻) — the blood buffer system</li>
+      <li>Dihydrogen phosphate (H₂PO₄⁻) + hydrogen phosphate (HPO₄²⁻)</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>How It Works: The Seesaw Mechanism</h2>
+    <p>The weak acid and its conjugate base exist in equilibrium:</p>
+    <pre>HA ⇌ H⁺ + A⁻</pre>
+    <p><strong>When you add strong base (OH⁻):</strong> The OH⁻ reacts with HA, converting it to A⁻ and water. The HA concentration drops slightly; A⁻ rises slightly. The equilibrium shifts right to replace some HA, but the pH changes very little because the added OH⁻ is consumed.</p>
+    <p><strong>When you add strong acid (H⁺):</strong> The H⁺ reacts with A⁻, converting it to HA. The A⁻ concentration drops slightly; HA rises slightly. The equilibrium shifts left, but again the pH barely moves.</p>
+
+    <div class="key">
+      <strong>Key insight:</strong> The buffer works because both HA and A⁻ are present in significant amounts. Each neutralizes the other's "enemy" (HA neutralizes base, A⁻ neutralizes acid). The ratio [A⁻]/[HA] changes only slightly, so the pH stays nearly constant.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>What Makes a Good Buffer?</h2>
+    <ul>
+      <li><strong>Both components must be present</strong> in reasonable concentrations (typically 0.01–1 M each).</li>
+      <li><strong>The pK<sub>a</sub> of the weak acid should be close to the desired pH</strong> (within ±1 pH unit). If pK<sub>a</sub> is too far from the target pH, one component will be present in negligible amounts.</li>
+      <li><strong>Concentrations should be comparable.</strong> A 10:1 ratio still buffers, but capacity is lopsided.</li>
+    </ul>
+  </section>
+
+  <div class="socratic" data-question="buffer-1">
+    <p>Why does a buffer resist a change in pH when a small amount of strong acid is added?</p>
+  </div>
+
+  <div class="socratic" data-question="buffer-2">
+    <p>A student says: "A buffer works because the weak acid doesn't dissociate much, so there's plenty of HA to react with added base." What is incomplete about this explanation?</p>
+  </div>
+</main>
+<footer>
+  <p><a href="index.html">← Overview</a> | <a href="lesson2.html">Lesson 2: Henderson–Hasselbalch →</a></p>
+</footer>
+<script src="socratic.js" defer></script>
+<script src="tutor.js" defer></script>
+</body>
+</html>

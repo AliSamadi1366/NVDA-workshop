@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 3: Buffer Capacity and Limits — Buffer pH</title>
+<style>
+  body { font: 16px/1.6 system-ui, -apple-system, Segoe UI, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+  h1 { font-size: 2rem; margin-bottom: 0.5rem; color: #e67e22; }
+  .subtitle { color: #555; margin-bottom: 2rem; }
+  nav { margin: 2rem 0; padding: 1rem; background: #f5f9f8; border-radius: 8px; }
+  nav a { display: inline-block; margin-right: 1rem; padding: 0.5rem 1rem; background: #0d6a65; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; }
+  nav a:hover { background: #0a5250; }
+  .card { border: 1px solid #e0e8e7; border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; background: #fafbfb; }
+  .card h2 { margin-top: 0; font-size: 1.3rem; color: #e67e22; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e8e7; color: #666; font-size: 0.9rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin: 0.5rem 0; }
+  .key { background: #eef7f6; border-left: 4px solid #e67e22; padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
+  .key strong { color: #e67e22; }
+  pre { background: #1e2a2e; color: #e3ecec; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+  .worked { background: #f0f7f6; border: 1px solid #c9d6d4; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+  .worked h3 { margin-top: 0; color: #e67e22; }
+  .socratic { border: 1px solid #c9d6d4; border-left: 4px solid #e67e22; border-radius: 10px; padding: 14px 16px; margin: 20px 0; background: #f6faf9; color: #15242a; }
+  @media (prefers-color-scheme:dark) {
+    body { color: #e3ecec; background: #0f1416; }
+    nav { background: #172528; }
+    .card { background: #172528; border-color: #27383e; }
+    .card h2 { color: #62c4ba; }
+    footer { border-color: #27383e; }
+    .key { background: #11282d; border-left-color: #62c4ba; }
+    .key strong { color: #62c4ba; }
+    pre { background: #11282d; }
+    .worked { background: #11282d; border-color: #27383e; }
+    .worked h3 { color: #62c4ba; }
+    .socratic { background: #152328; color: #e3ecec; border-color: #27383e; border-left-color: #62c4ba; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Lesson 3: Buffer Capacity and Limits</h1>
+  <p class="subtitle">How much acid or base can a buffer absorb before the pH changes significantly?</p>
+
+  <nav>
+    <a href="lesson2.html">← Lesson 2: Henderson–Hasselbalch</a>
+    <a href="index.html">Overview →</a>
+  </nav>
+
+  <section class="card">
+    <h2>What Is Buffer Capacity?</h2>
+    <p><strong>Buffer capacity (β)</strong> is a measure of how much strong acid or base a buffer can absorb per unit volume before the pH changes by a defined amount (typically 1 pH unit).</p>
+    <p>Formally: β = dn / (V × dpH), where dn is the moles of strong acid or base added, V is the volume, and dpH is the resulting pH change. In simpler terms:</p>
+    <pre class="key"><strong>Buffer capacity ≈ (moles of strong acid or base added) / (volume × pH change)</strong></pre>
+    <p>A buffer with high capacity resists pH change better — you can add more acid or base before the pH shifts noticeably.</p>
+  </section>
+
+  <section class="card">
+    <h2>Two Factors That Determine Capacity</h2>
+
+    <h3>1. Total Concentration of Buffer Components</h3>
+    <p>The more HA and A⁻ you have, the more acid or base you can neutralize. Doubling both concentrations roughly doubles the buffer capacity.</p>
+    <p><strong>Example:</strong> A buffer with 0.50 M HA + 0.50 M A⁻ has about twice the capacity of 0.25 M HA + 0.25 M A⁻ (at the same ratio).</p>
+
+    <h3>2. The Ratio [A⁻]/[HA] (How Close pH Is to pKₐ)</h3>
+    <p>Capacity is maximum when [A⁻] = [HA] (pH = pKₐ). As the ratio moves away from 1:1, capacity drops — one component becomes depleted faster.</p>
+    <ul>
+      <li>At [A⁻]/[HA] = 1:1, capacity is 100% (by definition)</li>
+      <li>At 10:1 or 1:10, capacity falls to ~40% of maximum</li>
+      <li>At 100:1 or 1:100, capacity is only ~8% of maximum</li>
+    </ul>
+
+    <div class="key">
+      <strong>Rule of thumb:</strong> A buffer is most effective within ±1 pH unit of its pKₐ. Outside this range, one component is too dilute to neutralize much added acid or base.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Visualizing Buffer Capacity</h2>
+    <p>Imagine titrating a buffer with strong base. The pH rises slowly at first (high capacity), then accelerates as one component is consumed.</p>
+    <pre>
+pH
+↑
+│        ┌───────────────────── steep rise (buffer exhausted)
+│       ╱
+│      ╱  gradual rise (buffer working)
+│     ╱
+│____╱_________________________→ moles of OH⁻ added
+      capacity region
+    </pre>
+    <p>The flat region is where the buffer works well. The steeper the curve, the lower the capacity.</p>
+  </section>
+
+  <section class="card">
+    <h2>Worked Example: Comparing Two Buffers</h2>
+    <div class="worked">
+      <h3>Example: Which Buffer Has Greater Capacity?</h3>
+      <p>Buffer A: 0.10 M CH₃COOH + 0.10 M CH₃COONa (total = 0.20 M, ratio = 1:1)</p>
+      <p>Buffer B: 0.01 M CH₃COOH + 0.01 M CH₃COONa (total = 0.02 M, ratio = 1:1)</p>
+      <p><strong>Analysis:</strong> Both have the same ratio (pH = pKₐ = 4.76), but Buffer A has 10× the total concentration. Buffer A can absorb roughly 10× more acid or base before the pH shifts by 1 unit.</p>
+    </div>
+
+    <div class="worked">
+      <h3>Example: Same Concentration, Different Ratios</h3>
+      <p>Buffer C: 0.10 M HA + 0.10 M A⁻ (ratio = 1:1, pH = pKₐ)</p>
+      <p>Buffer D: 0.18 M HA + 0.02 M A⁻ (ratio = 1:9, pH ≈ pKₐ – 0.95)</p>
+      <p><strong>Analysis:</strong> Both have the same total concentration (0.20 M). Buffer C has maximum capacity. Buffer D, with a 9:1 imbalance, has only ~40% of Buffer C's capacity against added base (it runs out of A⁻ quickly), though it still has reasonable capacity against added acid (plenty of HA available).
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Practical Limits: When a Buffer Fails</h2>
+    <ul>
+      <li><strong>Component depletion:</strong> If you add enough acid to consume all A⁻, or enough base to consume all HA, the buffer is destroyed — it becomes just a weak acid or weak base solution.</li>
+      <li><strong>Dilution:</strong> Diluting a buffer reduces capacity proportionally (less total moles per liter), but pH stays constant if the ratio is unchanged.</li>
+      <li><strong>Ionic strength effects:</strong> At very high concentrations (> 0.5 M), activity coefficients deviate from 1, and the simple Henderson–Hasselbalch equation becomes less accurate.</li>
+      <li><strong>Temperature:</strong> pKₐ changes with temperature, so a buffer's pH shifts if temperature changes.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Choosing a Buffer for an Experiment</h2>
+    <p>When designing a buffer for a real application:</p>
+    <ol>
+      <li><strong>Pick a weak acid with pKₐ within ±1 of your target pH.</strong></li>
+      <li><strong>Choose a total concentration</strong> that gives enough capacity for the expected acid/base load (typically 0.05–0.2 M for lab work).</li>
+      <li><strong>Check compatibility:</strong> The buffer shouldn't react with your sample (e.g., phosphate precipitates Ca²⁺; Tris reacts with some aldehydes).</li>
+      <li><strong>Consider temperature:</strong> Some buffers (like Tris) have large ΔpKₐ/ΔT; others (like phosphate) are more stable.</li>
+    </ol>
+  </section>
+
+  <div class="socratic" data-question="buffer-5">
+    <p>Two buffers both contain acetic acid/acetate at pH 4.76. Buffer X is 0.20 M total; Buffer Y is 0.02 M total. You add 0.01 mol of HCl to 1 L of each. Which buffer's pH changes more, and why?</p>
+  </div>
+
+  <div class="socratic" data-question="buffer-6">
+    <p>A student prepares an acetic acid/acetate buffer at pH 5.76 (pKₐ = 4.76). They say: "This buffer has a 10:1 ratio of acetate to acetic acid, so it's great at resisting added acid." What's wrong with this reasoning?</p>
+  </div>
+</main>
+<footer>
+  <p><a href="lesson2.html">← Lesson 2: Henderson–Hasselbalch</a> | <a href="index.html">Overview →</a></p>
+</footer>
+<script src="socratic.js" defer></script>
+<script src="tutor.js" defer></script>
+</body>
+</html>

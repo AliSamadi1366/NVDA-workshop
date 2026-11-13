@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 4: Molecular Geometry (VSEPR) — Molecular Chemistry</title>
+<style>
+  body { font: 16px/1.6 system-ui, -apple-system, Segoe UI, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+  h1 { font-size: 2rem; margin-bottom: 0.5rem; color: #e67e22; }
+  .subtitle { color: #555; margin-bottom: 2rem; }
+  nav { margin: 2rem 0; padding: 1rem; background: #f5f9f8; border-radius: 8px; }
+  nav a { display: inline-block; margin-right: 1rem; padding: 0.5rem 1rem; background: #0d6a65; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; }
+  nav a:hover { background: #0a5250; }
+  .card { border: 1px solid #e0e8e7; border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; background: #fafbfb; }
+  .card h2 { margin-top: 0; font-size: 1.3rem; color: #e67e22; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e8e7; color: #666; font-size: 0.9rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin: 0.5rem 0; }
+  .key { background: #eef7f6; border-left: 4px solid #e67e22; padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
+  .key strong { color: #e67e22; }
+  pre { background: #1e2a2e; color: #e3ecec; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+  .worked { background: #f0f7f6; border: 1px solid #c9d6d4; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+  .worked h3 { margin-top: 0; color: #e67e22; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+  th, td { border: 1px solid #c9d6d4; padding: 0.75rem; text-align: left; }
+  th { background: #eef7f6; color: #e67e22; }
+  .shape-row { vertical-align: top; }
+  .socratic { border: 1px solid #c9d6d4; border-left: 4px solid #e67e22; border-radius: 10px; padding: 14px 16px; margin: 20px 0; background: #f6faf9; color: #15242a; }
+  @media (prefers-color-scheme:dark) {
+    body { color: #e3ecec; background: #0f1416; }
+    nav { background: #172528; }
+    .card { background: #172528; border-color: #27383e; }
+    .card h2 { color: #62c4ba; }
+    footer { border-color: #27383e; }
+    .key { background: #11282d; border-left-color: #62c4ba; }
+    .key strong { color: #62c4ba; }
+    pre { background: #11282d; }
+    .worked { background: #11282d; border-color: #27383e; }
+    .worked h3 { color: #62c4ba; }
+    th { background: #11282d; color: #62c4ba; }
+    td, th { border-color: #27383e; }
+    .socratic { background: #152328; color: #e3ecec; border-color: #27383e; border-left-color: #62c4ba; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Lesson 4: Molecular Geometry — VSEPR Theory</h1>
+  <p class="subtitle">Predicting 3D molecular shapes from electron-domain repulsion</p>
+
+  <nav>
+    <a href="index.html">← Overview</a>
+    <a href="lesson1.html">Lesson 1: Buffers</a>
+  </nav>
+
+  <section class="card">
+    <h2>The Core Idea: Electron Domains Repel</h2>
+    <p><strong>VSEPR</strong> (Valence Shell Electron Pair Repulsion) theory predicts molecular geometry by assuming that <strong>electron domains</strong> — bonding pairs and lone pairs — arrange themselves as far apart as possible to minimize repulsion.</p>
+    <ul>
+      <li><strong>Bonding domain:</strong> A region where a pair of electrons is shared between two atoms (single, double, or triple bond each count as <em>one</em> domain).</li>
+      <li><strong>Lone pair domain:</strong> A nonbonding electron pair on the central atom.</li>
+    </ul>
+    <div class="key">
+      <strong>Key rule:</strong> Count electron domains (not bonds!) around the central atom. The domain geometry determines the approximate bond angles. The molecular geometry (shape) is the domain geometry with lone pairs "invisible."
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Domain Geometries and Molecular Shapes</h2>
+    <table>
+      <thead>
+        <tr><th>Domains</th><th>Domain Geometry</th><th>Lone Pairs</th><th>Molecular Geometry</th><th>Bond Angles</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr class="shape-row">
+          <td>2</td><td>Linear</td><td>0</td><td>Linear</td><td>180°</td><td>CO₂, BeCl₂</td>
+        </tr>
+        <tr class="shape-row">
+          <td>3</td><td>Trigonal planar</td><td>0</td><td>Trigonal planar</td><td>120°</td><td>BF₃, SO₃</td>
+        </tr>
+        <tr class="shape-row">
+          <td>3</td><td>Trigonal planar</td><td>1</td><td>Bent (V-shaped)</td><td>&lt;120° (~118°)</td><td>SO₂, O₃</td>
+        </tr>
+        <tr class="shape-row">
+          <td>4</td><td>Tetrahedral</td><td>0</td><td>Tetrahedral</td><td>109.5°</td><td>CH₄, CCl₄, NH₄⁺</td>
+        </tr>
+        <tr class="shape-row">
+          <td>4</td><td>Tetrahedral</td><td>1</td><td>Trigonal pyramidal</td><td>&lt;109.5° (~107°)</td><td>NH₃, PCl₃</td>
+        </tr>
+        <tr class="shape-row">
+          <td>4</td><td>Tetrahedral</td><td>2</td><td>Bent (V-shaped)</td><td>&lt;109.5° (~104.5°)</td><td>H₂O, OF₂</td>
+        </tr>
+        <tr class="shape-row">
+          <td>5</td><td>Trigonal bipyramidal</td><td>0</td><td>Trigonal bipyramidal</td><td>90°, 120°, 180°</td><td>PCl₅, PF₅</td>
+        </tr>
+        <tr class="shape-row">
+          <td>5</td><td>Trigonal bipyramidal</td><td>1</td><td>See-saw</td><td>90°, 120° (distorted)</td><td>SF₄</td>
+        </tr>
+        <tr class="shape-row">
+          <td>6</td><td>Octahedral</td><td>0</td><td>Octahedral</td><td>90°, 180°</td><td>SF₆</td>
+        </tr>
+        <tr class="shape-row">
+          <td>6</td><td>Octahedral</td><td>1</td><td>Square pyramidal</td><td>&lt;90°</td><td>BrF₅</td>
+        </tr>
+        <tr class="shape-row">
+          <td>6</td><td>Octahedral</td><td>2</td><td>Square planar</td><td>90°, 180°</td><td>XeF₄</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Lone Pairs Compress Bond Angles</h2>
+    <p>Lone pairs occupy more space than bonding pairs because they are attracted to only one nucleus. This stronger repulsion pushes bonding pairs closer together:</p>
+    <pre>
+CH₄ (0 lone pairs)  →  109.5°
+NH₃ (1 lone pair)   →  ~107°
+H₂O (2 lone pairs)  →  ~104.5°
+    </pre>
+    <p>In trigonal bipyramidal geometries, lone pairs always occupy <strong>equatorial</strong> positions (120° apart) to minimize 90° repulsions.</p>
+  </section>
+
+  <section class="card">
+    <h2>Worked Examples</h2>
+    <div class="worked">
+      <h3>Example 1: CO₂</h3>
+      <p>Central atom: C. Valence electrons: 4. Two double bonds to O = 2 domains. No lone pairs on C.</p>
+      <p><strong>Domains:</strong> 2 → <strong>Linear</strong>, 180°.</p>
+    </div>
+    <div class="worked">
+      <h3>Example 2: NH₃</h3>
+      <p>Central atom: N. Valence electrons: 5. Three single bonds to H (3 domains) + 1 lone pair = 4 domains.</p>
+      <p><strong>Domain geometry:</strong> Tetrahedral. <strong>Molecular geometry:</strong> Trigonal pyramidal. <strong>Angle:</strong> ~107°.</p>
+    </div>
+    <div class="worked">
+      <h3>Example 3: SF₄</h3>
+      <p>Central atom: S. Valence electrons: 6. Four single bonds to F (4 domains) + 1 lone pair = 5 domains.</p>
+      <p><strong>Domain geometry:</strong> Trigonal bipyramidal. Lone pair goes equatorial. <strong>Molecular geometry:</strong> See-saw.</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Polarity from Geometry</h2>
+    <p>Molecular geometry determines whether bond dipoles cancel:</p>
+    <ul>
+      <li><strong>Symmetrical shapes</strong> (linear, trigonal planar, tetrahedral, trigonal bipyramidal, octahedral) with identical substituents → <strong>nonpolar</strong> (e.g., CO₂, CCl₄, SF₆).</li>
+      <li><strong>Asymmetrical shapes</strong> or symmetrical shapes with different substituents → <strong>polar</strong> (e.g., H₂O, NH₃, CH₃Cl).</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Step-by-Step VSEPR Procedure</h2>
+    <ol>
+      <li>Draw the Lewis structure; identify the central atom.</li>
+      <li>Count electron domains on the central atom (bonds + lone pairs).</li>
+      <li>Determine the <strong>electron-domain geometry</strong> from the domain count.</li>
+      <li>Place lone pairs to minimize repulsion (equatorial in trigonal bipyramidal).</li>
+      <li>Name the <strong>molecular geometry</strong> (ignore lone pairs).</li>
+      <li>Predict approximate bond angles.</li>
+    </ol>
+  </section>
+
+  <div class="socratic" data-question="vsepr-1">
+    <p>Why does H₂O have a bond angle of ~104.5° instead of the tetrahedral 109.5°?</p>
+  </div>
+
+  <div class="socratic" data-question="vsepr-2">
+    <p>XeF₂ has 5 electron domains (2 bonding, 3 lone pairs) on Xe. Its domain geometry is trigonal bipyramidal. Where do the three lone pairs go, and what is the molecular geometry?</p>
+  </div>
+</main>
+<footer>
+  <p><a href="index.html">← Overview</a> | <a href="lesson1.html">Lesson 1: What Is a Buffer?</a></p>
+</footer>
+<script src="socratic.js" defer></script>
+<script src="tutor.js" defer></script>
+</body>
+</html>

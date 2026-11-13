@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 2: The Henderson–Hasselbalch Equation — Buffer pH</title>
+<style>
+  body { font: 16px/1.6 system-ui, -apple-system, Segoe UI, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+  h1 { font-size: 2rem; margin-bottom: 0.5rem; color: #e67e22; }
+  .subtitle { color: #555; margin-bottom: 2rem; }
+  nav { margin: 2rem 0; padding: 1rem; background: #f5f9f8; border-radius: 8px; }
+  nav a { display: inline-block; margin-right: 1rem; padding: 0.5rem 1rem; background: #0d6a65; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; }
+  nav a:hover { background: #0a5250; }
+  .card { border: 1px solid #e0e8e7; border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; background: #fafbfb; }
+  .card h2 { margin-top: 0; font-size: 1.3rem; color: #e67e22; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e8e7; color: #666; font-size: 0.9rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin: 0.5rem 0; }
+  .key { background: #eef7f6; border-left: 4px solid #e67e22; padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
+  .key strong { color: #e67e22; }
+  pre { background: #1e2a2e; color: #e3ecec; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+  .worked { background: #f0f7f6; border: 1px solid #c9d6d4; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+  .worked h3 { margin-top: 0; color: #e67e22; }
+  .socratic { border: 1px solid #c9d6d4; border-left: 4px solid #e67e22; border-radius: 10px; padding: 14px 16px; margin: 20px 0; background: #f6faf9; color: #15242a; }
+  @media (prefers-color-scheme:dark) {
+    body { color: #e3ecec; background: #0f1416; }
+    nav { background: #172528; }
+    .card { background: #172528; border-color: #27383e; }
+    .card h2 { color: #62c4ba; }
+    footer { border-color: #27383e; }
+    .key { background: #11282d; border-left-color: #62c4ba; }
+    .key strong { color: #62c4ba; }
+    pre { background: #11282d; }
+    .worked { background: #11282d; border-color: #27383e; }
+    .worked h3 { color: #62c4ba; }
+    .socratic { background: #152328; color: #e3ecec; border-color: #27383e; border-left-color: #62c4ba; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Lesson 2: The Henderson–Hasselbalch Equation</h1>
+  <p class="subtitle">Calculating buffer pH from the ratio of conjugate base to weak acid</p>
+
+  <nav>
+    <a href="lesson1.html">← Lesson 1: What Is a Buffer?</a>
+    <a href="lesson3.html">Lesson 3: Buffer Capacity →</a>
+  </nav>
+
+  <section class="card">
+    <h2>Deriving the Equation</h2>
+    <p>Start with the acid dissociation equilibrium for a weak acid HA:</p>
+    <pre>HA ⇌ H⁺ + A⁻</pre>
+    <p>The acid dissociation constant is:</p>
+    <pre>Kₐ = [H⁺][A⁻] / [HA]</pre>
+    <p>Solve for [H⁺]:</p>
+    <pre>[H⁺] = Kₐ × [HA] / [A⁻]</pre>
+    <p>Take the negative logarithm (base 10) of both sides:</p>
+    <pre>–log[H⁺] = –log Kₐ – log([HA] / [A⁻])</pre>
+    <p>By definition, pH = –log[H⁺] and pKₐ = –log Kₐ. Also, –log([HA]/[A⁻]) = log([A⁻]/[HA]). This gives the <strong>Henderson–Hasselbalch equation</strong>:</p>
+    <pre class="key"><strong>pH = pKₐ + log₁₀([A⁻] / [HA])</strong></pre>
+    <p>Where [A⁻] is the concentration of the conjugate base and [HA] is the concentration of the weak acid.</p>
+  </section>
+
+  <section class="card">
+    <h2>What the Equation Tells Us</h2>
+    <ul>
+      <li><strong>When [A⁻] = [HA], the log term is zero and pH = pKₐ.</strong> This is the point of maximum buffering symmetry.</li>
+      <li><strong>For every 10-fold increase in [A⁻]/[HA], pH increases by 1 unit.</strong> The log scale means ratio changes have predictable effects.</li>
+      <li><strong>The equation uses concentrations at equilibrium.</strong> In practice, we approximate using the initial (analytical) concentrations because the dissociation of HA and hydrolysis of A⁻ are small when both are present.</li>
+    </ul>
+
+    <div class="key">
+      <strong>Practical note:</strong> The approximation works well when both [HA] and [A⁻] are ≥ 0.01 M and the pH is within about ±1 of the pKₐ. Outside this range, the full equilibrium calculation (ICE table) is more accurate.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Worked Example</h2>
+    <div class="worked">
+      <h3>Example: Acetic Acid/Acetate Buffer</h3>
+      <p>Calculate the pH of a buffer containing 0.20 M CH₃COOH and 0.15 M CH₃COONa. The pKₐ of acetic acid is 4.76.</p>
+      <p><strong>Solution:</strong></p>
+      <pre>pH = pKₐ + log₁₀([CH₃COO⁻] / [CH₃COOH])
+pH = 4.76 + log₁₀(0.15 / 0.20)
+pH = 4.76 + log₁₀(0.75)
+pH = 4.76 + (–0.125)
+pH = 4.64</pre>
+      <p>The pH is slightly below the pKₐ because there is more acid than conjugate base.</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Designing a Buffer: Choosing the Ratio</h2>
+    <p>If you need a buffer at a specific target pH, rearrange the equation to find the required ratio:</p>
+    <pre>[A⁻] / [HA] = 10^(pH – pKₐ)</pre>
+    <p><strong>Example:</strong> You want a phosphate buffer at pH 7.2. The relevant pKₐ is 7.21 (for H₂PO₄⁻ ⇌ H⁺ + HPO₄²⁻).</p>
+    <pre>[HPO₄²⁻] / [H₂PO₄⁻] = 10^(7.20 – 7.21) = 10^(–0.01) ≈ 0.98</pre>
+    <p>A nearly 1:1 ratio of HPO₄²⁻ to H₂PO₄⁻ gives pH 7.20.</p>
+  </section>
+
+  <section class="card">
+    <h2>Common Pitfalls</h2>
+    <ul>
+      <li><strong>Using pKₐ of the wrong species.</strong> For an NH₃/NH₄⁺ buffer, the weak acid is NH₄⁺ (pKₐ = 9.25), not NH₃.</li>
+      <li><strong>Forgetting that dilution changes concentrations but not the ratio.</strong> Diluting a buffer 10-fold changes [HA] and [A⁻] equally, so pH stays the same (as long as the approximation holds).</li>
+      <li><strong>Applying the equation outside its valid range.</strong> Very dilute buffers or extreme ratios need the full equilibrium treatment.</li>
+    </ul>
+  </section>
+
+  <div class="socratic" data-question="buffer-3">
+    <p>A buffer contains 0.10 M HA and 0.10 M A⁻. Its pH equals the pKₐ. If you dilute this buffer tenfold with water, what happens to the pH, and why?</p>
+  </div>
+
+  <div class="socratic" data-question="buffer-4">
+    <p>You need a buffer at pH 5.00. You have acetic acid (pKₐ = 4.76) and sodium acetate. What ratio [acetate]/[acetic acid] should you use?</p>
+  </div>
+</main>
+<footer>
+  <p><a href="lesson1.html">← Lesson 1: What Is a Buffer?</a> | <a href="lesson3.html">Lesson 3: Buffer Capacity →</a></p>
+</footer>
+<script src="socratic.js" defer></script>
+<script src="tutor.js" defer></script>
+</body>
+</html>

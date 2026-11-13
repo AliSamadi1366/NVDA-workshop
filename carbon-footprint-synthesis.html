@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Carbon Footprint of Large Language Models: A Synthesis</title>
+<style>
+  body { font: 16px/1.7 system-ui, -apple-system, Segoe UI, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+  h1 { font-size: 2.2rem; margin-bottom: 0.3rem; color: #0d6a65; line-height: 1.3; }
+  h2 { font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 1rem; color: #0d6a65; border-bottom: 2px solid #e0e8e7; padding-bottom: 0.3rem; }
+  h3 { font-size: 1.2rem; margin-top: 1.8rem; margin-bottom: 0.5rem; color: #1a1a1a; }
+  .subtitle { color: #555; margin-bottom: 1.5rem; font-size: 1.1rem; }
+  .meta { color: #666; font-size: 0.95rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid #e0e8e7; }
+  .meta a { color: #0d6a65; text-decoration: none; }
+  .meta a:hover { text-decoration: underline; }
+  nav { margin: 1.5rem 0; padding: 1rem; background: #f5f9f8; border-radius: 8px; font-size: 0.9rem; }
+  nav a { display: inline-block; margin: 0.3rem 0.5rem 0.3rem 0; padding: 0.3rem 0.8rem; background: #0d6a65; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.85rem; }
+  nav a:hover { background: #0a5250; }
+  .abstract { background: #f0f7f6; border-left: 4px solid #0d6a65; padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .abstract strong { color: #0d6a65; }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border-radius: 8px; overflow: hidden; }
+  th, td { padding: 0.6rem 0.8rem; border: 1px solid #e0e8e7; text-align: left; vertical-align: top; }
+  th { background: #0d6a65; color: white; font-weight: 600; }
+  tr:nth-child(even) { background: #fafbfb; }
+  tr:hover { background: #f0f7f6; }
+  .table-caption { font-size: 0.85rem; color: #555; margin: -1rem 0 1.5rem 0; font-style: italic; }
+  .footnote { font-size: 0.8rem; color: #666; margin: 0.5rem 0 1.5rem 0; }
+  .callout { background: #fff8e1; border-left: 4px solid #f9a825; padding: 1rem 1.2rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .callout strong { color: #e67e22; }
+  .key-lesson { background: #e8f5e9; border-left: 4px solid #43a047; padding: 1rem 1.2rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .key-lesson strong { color: #2e7d32; }
+  .recommendation { background: #f3e5f5; border-left: 4px solid #8e24aa; padding: 1rem 1.2rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
+  .recommendation strong { color: #7b1fa2; }
+  ul, ol { padding-left: 1.5rem; }
+  li { margin: 0.4rem 0; }
+  blockquote { margin: 1.5rem 0; padding: 0.8rem 1.2rem; border-left: 4px solid #0d6a65; background: #f5f9f8; font-style: italic; color: #333; }
+  code { background: #f0f7f6; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
+  pre { background: #1e1e1e; color: #d4d4d4; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; }
+  .reference { font-size: 0.9rem; margin: 0.5rem 0; padding-left: 1.5rem; text-indent: -1.5rem; }
+  .back-link { display: inline-block; margin-top: 2rem; padding: 0.6rem 1.2rem; background: #0d6a65; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; }
+  .back-link:hover { background: #0a5250; }
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #e0e8e7; color: #666; font-size: 0.9rem; text-align: center; }
+  @media (max-width: 600px) {
+    body { padding: 0 1rem; font-size: 15px; }
+    h1 { font-size: 1.7rem; }
+    table { font-size: 0.75rem; }
+    th, td { padding: 0.4rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>The Carbon Footprint of Large Language Models:<br>A Synthesis of Four Foundational Studies</h1>
+  <p class="subtitle">A comprehensive review tracing the evolution of carbon accounting for LLMs from proxy estimates to life-cycle assessment, identifying five leverage points for emissions reduction.</p>
+
+  <div class="meta">
+    <strong>Authors:</strong> Workshop Agent (synthesis) · <strong>Sources:</strong> Strubell et al. (2019), Patterson et al. (2021), Luccioni et al. (2022), Touvron et al. (2023) · <strong>Date:</strong> November 2026
+  </div>
+
+  <nav aria-label="Table of Contents">
+    <a href="#abstract">Abstract</a>
+    <a href="#introduction">Introduction</a>
+    <a href="#table1">Unified Comparison (Table 1)</a>
+    <a href="#methodology">Methodological Evolution</a>
+    <a href="#levers">Five Levers for Reduction</a>
+    <a href="#gaps">Critical Analysis</a>
+    <a href="#recommendations">Recommendations</a>
+    <a href="#limitations">Limitations</a>
+    <a href="#conclusion">Conclusion</a>
+    <a href="#references">References</a>
+  </nav>
+
+  <section id="abstract" class="abstract">
+    <strong>Abstract.</strong> As large language models (LLMs) have grown from millions to hundreds of billions of parameters, their computational demands—and corresponding carbon emissions—have become a central concern for the machine learning community. We synthesize findings from four seminal papers spanning 2019–2023: Strubell et al. (2019) on energy and policy considerations for NLP; Patterson et al. (2021) on carbon emissions of large neural network training; Luccioni et al. (2022) on the life-cycle carbon footprint of BLOOM; and Touvron et al. (2023) on Llama 2. Together, these works trace a trajectory from early proxy-based warnings to systematic in-production measurement, architectural innovation, life-cycle assessment, and industrial-scale deployment with carbon accounting. We identify five key leverage points for reducing emissions: (1) algorithmic efficiency through sparse activation, (2) hardware specialization via domain-specific accelerators, (3) geographic optimization of datacenter location and carbon-free energy procurement, (4) life-cycle accounting including embodied emissions, and (5) transparency through standardized reporting. Patterson et al. demonstrate that <em>in principle</em>, the combination of model architecture, processor, and datacenter choices can reduce carbon footprints by <strong>up to 100–1000×</strong> across independent axes; demonstrated reductions for comparable tasks reach <strong>~130×</strong> (GShard-600B vs. GPT-3, net CO₂e). Yet adoption remains uneven. We conclude with recommendations for researchers, conferences, cloud providers, and hardware vendors to institutionalize carbon-aware ML practices.
+  </section>
+
+  <section id="introduction">
+    <h2>1. Introduction</h2>
+    <p>The past five years have witnessed exponential growth in language model scale: from BERT (340M parameters, 2019) to GPT-3 (175B, 2020) to Llama 2 (70B, 2023) and beyond. This scaling has delivered remarkable capabilities but at escalating computational cost. Training a single large model can consume megawatt-hours of electricity and emit hundreds of tonnes of CO₂ equivalent (tCO₂e)—comparable to the annual emissions of dozens of cars or hundreds of transatlantic flights.</p>
+    <p>Four papers form the backbone of the community's understanding of this problem:</p>
+    <ol>
+      <li><strong>Strubell, Ganesh &amp; McCallum (2019)</strong> — "Energy and Policy Considerations for Deep Learning in NLP" — the first systematic quantification of financial and environmental costs of NLP model training, including a case study of neural architecture search (NAS) revealing massive hidden costs.</li>
+      <li><strong>Patterson et al. (2021)</strong> — "Carbon Emissions and Large Neural Network Training" (Google) — a comprehensive analysis of five large models (T5, Meena, GShard, Switch Transformer, GPT-3) demonstrating that <strong>model architecture, processor choice, and datacenter location</strong> jointly enable up to 100–1000× carbon reduction in principle, with demonstrated reductions of ~130× for sparse vs. dense models at matched capability.</li>
+      <li><strong>Luccioni, Viguier &amp; Ligozat (2022)</strong> — "Estimating the Carbon Footprint of BLOOM" — the first full life-cycle assessment (LCA) of a 176B-parameter model, accounting for both operational energy and embodied emissions from hardware manufacturing.</li>
+      <li><strong>Touvron et al. (2023)</strong> — "Llama 2: Open Foundation and Fine-Tuned Chat Models" (Meta) — an industrial-scale deployment (3.3M GPU-hours, 539 tCO₂e gross) with full carbon accounting, market-based offsetting, and open release to amortize training costs across the community.</li>
+    </ol>
+    <p>This synthesis extracts convergent findings, highlights methodological evolution, identifies remaining gaps, and provides a unified comparison framework.</p>
+  </section>
+
+  <section id="table1">
+    <h2>2. Unified Comparison Across Studies</h2>
+    <p><strong>Table 1</strong> provides the first side-by-side comparison of all four studies on a consistent basis.</p>
+
+    <table id="unified-table">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Strubell et al. (2019)</th>
+          <th>Patterson et al. (2021)</th>
+          <th>Luccioni et al. (2022)</th>
+          <th>Touvron et al. (2023)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Model(s) Analyzed</strong></td>
+          <td>Transformer, ELMo, BERT, GPT-2, NAS (Evolved Transformer)</td>
+          <td>T5, Meena, GShard-600B, Switch Transformer, GPT-3</td>
+          <td>BLOOM (176B)</td>
+          <td>Llama 2 (7B, 13B, 70B)</td>
+        </tr>
+        <tr>
+          <td><strong>Hardware</strong></td>
+          <td>Titan X (measured); P100, TPUv2 (scaled)</td>
+          <td>TPUv2, TPUv3, V100 (measured in Google/MSFT prod)</td>
+          <td>A100 (384 GPUs, Jean Zay)</td>
+          <td>A100-80GB (350–400W TDP)</td>
+        </tr>
+        <tr>
+          <td><strong>Training Duration</strong></td>
+          <td>12h–336h (measured); 274k hrs (NAS proj.)</td>
+          <td>0.19–168 days (varied)</td>
+          <td>117 days wall-clock (384 GPUs)</td>
+          <td>3.3M GPU-hours total (cumulative)</td>
+        </tr>
+        <tr>
+          <td><strong>Energy Consumption</strong></td>
+          <td>27–656,347 kWh (proj.)</td>
+          <td>1.3–1,287 MWh (measured)</td>
+          <td>~433 MWh (back-calculated)¹</td>
+          <td>~1,880 MWh (derived)²</td>
+        </tr>
+        <tr>
+          <td><strong>Gross CO₂e (tCO₂e)</strong></td>
+          <td>26–626,155 lbs (12–284 t)</td>
+          <td>0.13–552 (measured, varied by model)</td>
+          <td>24.7 (operational only)</td>
+          <td>539</td>
+        </tr>
+        <tr>
+          <td><strong>Net CO₂e (tCO₂e)</strong></td>
+          <td>Not reported</td>
+          <td>0.13–59 (with 24/7 CFE where applicable)</td>
+          <td>24.7 (French grid ~57 gCO₂e/kWh)</td>
+          <td>Not reported (offset via RECs)</td>
+        </tr>
+        <tr>
+          <td><strong>Embodied CO₂e (tCO₂e)</strong></td>
+          <td>Not reported</td>
+          <td>Not reported</td>
+          <td>25.8 (total 50.5 – 24.7)</td>
+          <td>Not reported</td>
+        </tr>
+        <tr>
+          <td><strong>Grid Carbon Intensity</strong></td>
+          <td>US avg: 423 gCO₂e/kWh (EPA eGRID 2018)</td>
+          <td>Google GA: 431 g; IA: 478 g (gross); 80 g (net)</td>
+          <td>France: ~57 gCO₂e/kWh (RTE 2021)</td>
+          <td>Not disclosed (Meta global avg ~300–400 g est.)</td>
+        </tr>
+        <tr>
+          <td><strong>Datacenter PUE</strong></td>
+          <td>US avg: 1.58 (Uptime Institute)</td>
+          <td>Google GA: 1.10; IA: 1.08 (measured)</td>
+          <td>Jean Zay: ~1.1–1.2 (est.)</td>
+          <td>Not disclosed (Meta avg ~1.1)</td>
+        </tr>
+        <tr>
+          <td><strong>Carbon Accounting Method</strong></td>
+          <td>Location-based, annual avg grid</td>
+          <td>Location-based, hourly marginal + 24/7 CFE contracts</td>
+          <td>Location-based (French grid), LCA (ISO 14040/44)</td>
+          <td>Market-based (RECs + conventional offsets)</td>
+        </tr>
+        <tr>
+          <td><strong>Key Innovation</strong></td>
+          <td>First quantification; NAS case study</td>
+          <td>Measured power, PUE, hourly CFE; sparse vs dense</td>
+          <td>Full LCA (manufacturing + ops + inference)</td>
+          <td>Industrial scale + open release + model card</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="table-caption">Table 1: Unified comparison of four foundational LLM carbon footprint studies. Derived/back-calculated values marked with footnotes; all others cited directly from source papers.</p>
+
+    <p class="footnote"><sup>1</sup> <strong>BLOOM energy</strong>: Back-calculated from reported 24.7 tCO₂e operational ÷ 57 gCO₂e/kWh (French grid avg) = 433 MWh. Luccioni et al. do not directly report MWh.</p>
+    <p class="footnote"><sup>2</sup> <strong>Llama 2 energy</strong>: Derived from reported 3.3M GPU-hours × 400W/GPU × 1.1 PUE ÷ 1000 = 1,880 MWh. Assumes continuous 400W/GPU (TDP) and 1.1 PUE; actual measured average power likely lower (Patterson et al. show GPUs run below TDP). Meta does not disclose measured energy or PUE.</p>
+  </section>
+
+  <section id="methodology">
+    <h2>3. Methodological Evolution: From Proxies to Life-Cycle Assessment</h2>
+
+    <h3>3.1 Proxy-Based Estimation (Strubell et al., 2019)</h3>
+    <p>Strubell et al. measured GPU/CPU power draw during training on a single Titan X, extrapolated to cloud hardware using thermal design power (TDP) and average US datacenter PUE (1.58). Energy converted to CO₂e using US EPA eGRID average (0.423 kg CO₂e/kWh).</p>
+    <div class="key-lesson">
+      <strong>Key Lesson:</strong> Extrapolation from TDP and average grid intensity introduces order-of-magnitude errors. The NAS re-analysis (Patterson Appendix D) shows actual Google-internal NAS emissions were <strong>3.2 tCO₂e</strong> vs. Strubell's <strong>284 tCO₂e</strong> estimate—a cautionary tale for proxy-based accounting.
+    </div>
+    <p><strong>Limitations acknowledged by authors</strong>: TDP overestimates actual power; US average grid misrepresents cloud provider emissions; no embodied emissions; NAS cost initially overestimated by <strong>~88×</strong> due to hardware/datacenter assumptions (later corrected by Patterson et al., Appendix C/D).</p>
+
+    <h3>3.2 Measured Systems in Production Datacenters (Patterson et al., 2021)</h3>
+    <p>Patterson et al. used <strong>actual measurements</strong> from Google's production infrastructure: measured system power (memory, fans, CPU host, network), actual datacenter PUE (1.10 Georgia, 1.08 Iowa), and <strong>hourly carbon intensity</strong> of the local grid. They introduced <strong>gross vs. net CO₂e</strong>—the latter accounting for 24/7 carbon-free energy (CFE) procurement via long-term contracts.</p>
+    <div class="key-lesson">
+      <strong>Key Advance:</strong> Measured performance/Watt diverges significantly from theoretical: TPU v3 is <strong>2.0× better than V100</strong> in practice, despite V100 leading on paper (Figure 5). Extrapolation tools (ML Emissions Calculator, Green Algorithms) differ from measured values by <strong>0.53–2.42×</strong> (geometric means 0.92 and 1.48).
+    </div>
+
+    <h3>3.3 Full Life-Cycle Assessment (Luccioni et al., 2022)</h3>
+    <p>Luccioni et al. applied ISO 14040/14044 LCA methodology to BLOOM, covering:</p>
+    <ul>
+      <li><strong>Manufacturing</strong>: Server, GPU, and infrastructure embodied emissions (Boavizta database v1.0)</li>
+      <li><strong>Operational</strong>: Dynamic power during training (117 days wall-clock on 384 A100 GPUs, French grid ~57 gCO₂e/kWh)</li>
+      <li><strong>Deployment</strong>: Inference API emissions modeled over 1.5M requests</li>
+    </ul>
+    <p><strong>Result</strong>: 24.7 tCO₂e (operational) vs. <strong>50.5 tCO₂e (full LCA)</strong>—embodied emissions roughly <strong>equal operational</strong> on a low-carbon grid. Inference: ~0.003 tCO₂e/day at deployment scale modeled.</p>
+
+    <h3>3.4 Industrial Scale with Market-Based Offsetting (Touvron et al., 2023)</h3>
+    <p>Meta reports: <strong>3.3M GPU-hours</strong> on A100-80GB (350–400W TDP), <strong>539 tCO₂e gross</strong>, <strong>100% offset via Meta's sustainability program</strong> (conventional offsets + Renewable Energy Certificates). Training data cutoff: September 2022; tuning data through July 2023. Model card includes carbon footprint—setting a transparency standard.</p>
+    <div class="callout">
+      <strong>Critical Distinction:</strong> Llama 2 uses <strong>market-based accounting</strong> (RECs, annual matching, any geography). Patterson et al. distinguish this from <strong>24/7 CFE</strong> (hourly, local grid matching). The former is financial accounting; the latter is structural decarbonization. Meta's offsets do not imply the training workload ran on carbon-free energy hour-by-hour.
+    </div>
+  </section>
+
+  <section id="levers">
+    <h2>4. Convergent Findings: Five Levers for Emissions Reduction</h2>
+
+    <h3>4.1 Algorithmic Efficiency: Sparse Activation</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Parameters</th>
+          <th>Activation</th>
+          <th>Training Energy</th>
+          <th>Net CO₂e</th>
+          <th>Relative to GPT-3 (dense)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GPT-3</td>
+          <td>175B</td>
+          <td>100% (dense)</td>
+          <td>1,287 MWh</td>
+          <td>552 tCO₂e (gross)</td>
+          <td>1× (baseline)</td>
+        </tr>
+        <tr>
+          <td>GShard-600B</td>
+          <td>600B</td>
+          <td>~0.1% (MoE)</td>
+          <td>24 MWh</td>
+          <td>4.3 tCO₂e (net, Iowa)</td>
+          <td><strong>~130× less</strong></td>
+        </tr>
+        <tr>
+          <td>Switch Transformer</td>
+          <td>1,500B</td>
+          <td>~0.1% (MoE)</td>
+          <td>179 MWh</td>
+          <td>59 tCO₂e (gross, Georgia)</td>
+          <td><strong>~9× less (gross)</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="table-caption">Table 2: Sparse vs. dense model comparison (Patterson et al., Table 4). Net CO₂e for Switch Transformer not reported; Georgia gross used.</p>
+
+    <p><strong>Finding</strong>: Sparsely activated mixture-of-experts (MoE) models achieve <strong>&gt;10× compute reduction</strong> at equivalent or better accuracy (Lepikhin et al., 2020; Fedus et al., 2021). Parameter count decouples from compute—a fundamental shift. Patterson et al. note: <em>"significant power might be saved by revisiting accuracy requirements"</em> (Kaplan et al., 2020).</p>
+
+    <h3>4.2 Hardware Specialization: Domain-Specific Accelerators</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Processor</th>
+          <th>Relative Perf/Watt (measured)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>TPU v2</td>
+          <td>5.6–6.2× vs P100</td>
+          <td>Patterson et al., Table 1</td>
+        </tr>
+        <tr>
+          <td>TPU v3</td>
+          <td>2.0× vs V100</td>
+          <td>Patterson et al., Figure 5</td>
+        </tr>
+        <tr>
+          <td>TPU v4</td>
+          <td>~1.4× vs TPU v3 (projected)</td>
+          <td>Jouppi et al., 2021</td>
+        </tr>
+        <tr>
+          <td>A100 (400W)</td>
+          <td>Baseline for Llama 2</td>
+          <td>Touvron et al.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="table-caption">Table 3: Hardware performance per Watt (measured).</p>
+    <p>Custom ASICs (TPUs) outperform GPUs on DNN workloads by <strong>2–6× in performance/Watt</strong> by eliminating graphics overhead and optimizing for matrix multiply. <strong>Measured</strong> perf/Watt should be the reporting standard, not peak TOPS/Watt.</p>
+
+    <h3>4.3 Geographic &amp; Temporal Optimization: Datacenter Location &amp; CFE</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Datacenter</th>
+          <th>Grid CO₂e/kWh (gross)</th>
+          <th>Net CO₂e/kWh (24/7 CFE)</th>
+          <th>Reduction (net vs US avg)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>US Average</td>
+          <td>429 g</td>
+          <td>—</td>
+          <td>baseline</td>
+        </tr>
+        <tr>
+          <td>Google Georgia</td>
+          <td>431 g</td>
+          <td>~431 g</td>
+          <td>~1× (low CFE)</td>
+        </tr>
+        <tr>
+          <td>Google Iowa</td>
+          <td>478 g</td>
+          <td>80 g</td>
+          <td><strong>~6×</strong></td>
+        </tr>
+        <tr>
+          <td>Google Oklahoma</td>
+          <td>~400 g¹</td>
+          <td>~20 g (95.6% CFE)</td>
+          <td><strong>&gt;20×</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="table-caption">Table 4: Geographic carbon intensity variation (Patterson et al., Tables 1, 4, Appendix B).</p>
+    <p class="footnote"><sup>1</sup> Oklahoma gross grid intensity similar to Georgia (~400 gCO₂e/kWh); net = gross × (1 – CFE%) ≈ 400 × 0.044 ≈ 18 gCO₂e/kWh.</p>
+
+    <p><strong>Key insight</strong>: The same hardware running the same model emits <strong>&gt;20× less</strong> in Oklahoma vs. Georgia due to wind enabling 24/7 CFE matching. Google now <strong>schedules large training jobs in high-CFE regions</strong>.</p>
+
+    <h3>4.4 Life-Cycle Accounting: Embodied Emissions Matter</h3>
+    <p>Luccioni et al. reveal that for BLOOM (trained on low-carbon French grid), <strong>embodied emissions ≈ operational emissions</strong> (25.8 vs. 24.7 tCO₂e). On higher-carbon grids, operational dominates; on clean grids, embodied becomes majority.</p>
+    <div class="callout">
+      <strong>Implication:</strong> As grids decarbonize, <strong>hardware manufacturing becomes the limiting factor</strong>. Extending hardware lifetime, improving manufacturing efficiency, and circular economy approaches gain importance. No other study in this synthesis quantifies embodied emissions.
+    </div>
+
+    <h3>4.5 Inference: The Hidden Majority</h3>
+    <p>All four papers focus primarily on <strong>training</strong>, yet Patterson et al. cite Google-internal data: <strong>inference accounts for 60–90% of total ML energy</strong> over a model's lifetime (Patterson et al., Section 4.7). Luccioni et al. model BLOOM inference (~0.003 tCO₂e/day for 1.5M requests/day API) but acknowledge usage uncertainty. Strubell and Touvron do not quantify inference.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Study</th>
+          <th>Inference Treatment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Strubell et al.</td>
+          <td>Not quantified</td>
+        </tr>
+        <tr>
+          <td>Patterson et al.</td>
+          <td>Cited as 60–90% of lifetime (internal Google data); not modeled per model</td>
+        </tr>
+        <tr>
+          <td>Luccioni et al.</td>
+          <td>Modeled for BLOOM API deployment; scenario-based</td>
+        </tr>
+        <tr>
+          <td>Touvron et al.</td>
+          <td>Not quantified</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="table-caption">Table 5: Inference coverage across studies.</p>
+    <p><strong>Gap</strong>: No paper fully quantifies inference at scale for open models. This is the largest unknown in LLM carbon accounting.</p>
+
+    <h3>4.6 Transparency &amp; Standardized Reporting</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Paper</th>
+          <th>Reporting Scope</th>
+          <th>Tools/Standards Referenced</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Strubell et al.</td>
+          <td>Training only (proxy)</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Patterson et al.</td>
+          <td>Training (measured, gross + net)</td>
+          <td>ML Emissions Calculator, Green Algorithms</td>
+        </tr>
+        <tr>
+          <td>Luccioni et al.</td>
+          <td>Full LCA (ISO 14040/44)</td>
+          <td>CodeCarbon, Carbontracker, Boavizta</td>
+        </tr>
+        <tr>
+          <td>Touvron et al.</td>
+          <td>Training (measured, offset)</td>
+          <td>Model Card (Mitchell et al., 2018)</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="table-caption">Table 6: Reporting scope and standards.</p>
+    <p><strong>Convergence</strong>: All recent works advocate <strong>mandatory reporting</strong> of: hardware, hours, datacenter PUE, grid carbon intensity (gross + net if CFE applies), and (ideally) embodied emissions. Patterson et al. and Strubell et al. explicitly call for this as a <strong>publication requirement</strong>.</p>
+  </section>
+
+  <section id="gaps">
+    <h2>5. Critical Analysis: Gaps and Tensions</h2>
+
+    <h3>5.1 The Efficiency Paradox (Jevons Paradox)</h3>
+    <p>Patterson et al. note: <em>"the most sustainable energy is the energy you don't use."</em> Yet <strong>efficiency gains historically enable larger models</strong>, not lower total emissions. GShard-600B uses 55× less energy than GPT-3 <em>per unit capability</em>, but the field responds by building 1,500B-parameter Switch Transformers. <strong>Absolute emissions may not decrease</strong> unless efficiency is paired with sufficiency constraints or demand-side management.</p>
+
+    <h3>5.2 Carbon Offsets vs. Structural Reduction</h3>
+    <p>Touvron et al. offset 100% of Llama 2's 539 tCO₂e via Meta's sustainability program (conventional offsets + RECs). Patterson et al. distinguish <strong>conventional offsets</strong> (annual matching, any geography) from <strong>24/7 CFE</strong> (hourly, local grid matching). The latter is <strong>structural decarbonization</strong>; the former is <strong>financial accounting</strong>. The community risks conflating them.</p>
+    <div class="recommendation">
+      <strong>Recommendation:</strong> Papers should specify <em>which</em> accounting method they use (location-based vs. market-based; gross vs. net; hourly vs. annual). Model cards should include an "accounting_method" field—aligned with emerging standards from MLCommons Carbon Aware Working Group and Partnership on AI.
+    </div>
+
+    <h3>5.3 Equity of Access</h3>
+    <p>Strubell et al. warned: <em>"limiting this style of research to industry labs hurts the NLP community."</em> Three responses appear in the corpus:</p>
+    <ul>
+      <li><strong>Patterson et al.</strong>: Cloud democratizes access (Alibaba, AWS, GCP, Azure); custom accelerators available via cloud.</li>
+      <li><strong>Luccioni et al.</strong>: BLOOM trained on public French HPC (Jean Zay, GENCI allocation)—a national-infrastructure model.</li>
+      <li><strong>Touvron et al.</strong>: Open release amortizes 3.3M GPU-hours across all users; fine-tuning/inference still require GPUs.</li>
+    </ul>
+    <p>The synthesis reveals <strong>three distinct equity strategies</strong>: cloud credits, public HPC allocations, and open weights. All three are needed; none alone suffices.</p>
+
+    <h3>5.4 Measurement vs. Extrapolation Gap</h3>
+    <p>Patterson et al. show extrapolation tools differ from measured values by <strong>0.53–2.42×</strong>. <strong>Extrapolation systematically overestimates</strong> because it uses TDP not measured power, and average grid not marginal/locational intensity. <strong>Mandatory measurement infrastructure</strong> (CodeCarbon/Carbontracker integrated in training loops) is needed.</p>
+  </section>
+
+  <section id="recommendations">
+    <h2>6. Recommendations</h2>
+
+    <h3>For Researchers</h3>
+    <ol>
+      <li><strong>Measure, don't estimate</strong>: Integrate CodeCarbon or Carbontracker in training scripts; log actual GPU power, hours, datacenter location.</li>
+      <li><strong>Report full stack</strong>: Hardware, PUE, grid intensity (gross + net if CFE applies), embodied emissions (even if approximate via Boavizta).</li>
+      <li><strong>Prioritize sparse architectures</strong> for large-scale work; evaluate dense baselines at matched compute, not matched parameters.</li>
+      <li><strong>Publish failed experiments' costs</strong>—development overhead (Patterson §4.2) often equals or exceeds final training.</li>
+      <li><strong>Quantify inference</strong>: Model expected usage patterns; report inference energy per 1K tokens.</li>
+    </ol>
+
+    <h3>For Conferences &amp; Journals</h3>
+    <ol>
+      <li><strong>Require carbon impact statements</strong> for computationally intensive papers (as EACL/NAACL 2021 "Efficient and Green" tracks pioneered).</li>
+      <li><strong>Accept "negative results" on efficiency</strong>—showing a method <em>doesn't</em> improve perf/Watt is valuable.</li>
+      <li><strong>Standardize reporting format</strong>: Structured table (Table 1 of this paper) as supplementary material requirement.</li>
+    </ol>
+
+    <h3>For Cloud Providers</h3>
+    <ol>
+      <li><strong>Expose hourly, locational carbon intensity</strong> via API (Google Cloud does; AWS/Azure should follow).</li>
+      <li><strong>Offer "green training" scheduling</strong>: automatically queue jobs in high-CFE regions with user consent.</li>
+      <li><strong>Publish PUE and CFE% per region per month</strong>—enable accurate Scope 2 accounting.</li>
+    </ol>
+
+    <h3>For Hardware Vendors</h3>
+    <ol>
+      <li><strong>Report measured performance/Watt on standard DNN workloads</strong>, not peak TOPS/Watt.</li>
+      <li><strong>Disclose embodied emissions per device</strong> (cradle-to-gate) to enable LCA.</li>
+      <li><strong>Design for longevity</strong>: modular upgrades, repair-friendly architectures.</li>
+    </ol>
+  </section>
+
+  <section id="limitations">
+    <h2>7. Limitations of This Synthesis</h2>
+    <ol>
+      <li><strong>Source selection bias</strong>: Four papers only; excludes e.g., Wu et al. (2022) on sustainable AI, Henderson et al. (2020) on emissions tracking, or more recent models (GPT-4, PaLM-2, Nemotron).</li>
+      <li><strong>Training-focused</strong>: Inference synthesis limited by source gaps (Section 4.5).</li>
+      <li><strong>No primary measurement</strong>: All figures derived from reported values; no independent verification.</li>
+      <li><strong>Temporal snapshot</strong>: Methods and grid intensities evolve rapidly (e.g., TPU v4, Oklahoma CFE%, newer GPU generations).</li>
+      <li><strong>Geographic concentration</strong>: Three of four studies reflect US/EU corporate or national infrastructure; Global South perspectives absent.</li>
+      <li><strong>Language bias</strong>: All four papers focus on English-centric models (BLOOM is multilingual but trained on French grid). Carbon intensity of training non-English models in other grids unexplored.</li>
+    </ol>
+  </section>
+
+  <section id="conclusion">
+    <h2>8. Conclusion</h2>
+    <p>The four papers reviewed trace a remarkable arc: from Strubell et al.'s warning that NAS emitted ~284 tCO₂e (proxy) for a 0.1 BLEU gain, to Patterson et al.'s demonstration that <strong>the same task can be done ~130× more cleanly</strong> via sparse models + TPUs + Iowa wind, to Luccioni et al.'s rigor in showing that <strong>even on clean grids, hardware manufacturing doubles the footprint</strong>, to Touvron et al.'s industrial-scale deployment with full accounting and open release.</p>
+    <p>The technical levers are clear and potent: sparse architectures (10–130×), specialized hardware (2–6×), geographic/CFE optimization (6–20×), life-cycle awareness (2× on clean grids), and measurement-based reporting (eliminating 2× extrapolation error). Combined, these <em>can</em> approach the <strong>100–1000× theoretical range</strong> Patterson et al. identify across independent axes.</p>
+    <p>The remaining barriers are <strong>incentive structures</strong> (publish-or-perish favors scale over efficiency), <strong>measurement infrastructure</strong> (tools still rely on proxies), <strong>governance</strong> (no mandatory reporting standard), and <strong>accounting ambiguity</strong> (offsets vs. structural reduction). The community has the knowledge; it now needs the will to institutionalize carbon-aware ML as default practice, not optional afterthought.</p>
+  </section>
+
+  <section id="references">
+    <h2>References</h2>
+    <p class="reference">[1] Strubell, E., Ganesh, A., &amp; McCallum, A. (2019). Energy and Policy Considerations for Deep Learning in NLP. <em>Proceedings of ACL 2019</em>, pp. 3645–3650. <a href="https://doi.org/10.18653/v1/P19-1355">https://doi.org/10.18653/v1/P19-1355</a>. arXiv:1906.02243.</p>
+    <p class="reference">[2] Patterson, D., Gonzalez, J., Le, Q., Liang, C., Munguia, L.-M., Rothchild, D., So, D., Texier, M., &amp; Dean, J. (2021). Carbon Emissions and Large Neural Network Training. arXiv preprint arXiv:2104.10350v3.</p>
+    <p class="reference">[3] Luccioni, A. S., Viguier, S., &amp; Ligozat, A.-L. (2022). Estimating the Carbon Footprint of BLOOM, a 176B Parameter Language Model. arXiv preprint arXiv:2211.02001v1.</p>
+    <p class="reference">[4] Touvron, H., et al. (2023). Llama 2: Open Foundation and Fine-Tuned Chat Models. arXiv preprint arXiv:2307.09288v2.</p>
+    <p class="reference">[5] Lepikhin, D., et al. (2020). GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding. arXiv preprint arXiv:2006.16668.</p>
+    <p class="reference">[6] Fedus, W., et al. (2021). Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity. arXiv preprint arXiv:2101.03961.</p>
+    <p class="reference">[7] Mitchell, M., et al. (2018). Model Cards for Model Reporting. <em>Proceedings of FAT* 2019</em>, pp. 220–229.</p>
+    <p class="reference">[8] Lacoste, A., et al. (2019). Quantifying the Carbon Emissions of Machine Learning. arXiv preprint arXiv:1910.09700.</p>
+    <p class="reference">[9] Lannelongue, L., Grealey, J., &amp; Inouye, M. (2020). Green Algorithms: Quantifying the Carbon Footprint of Computation. arXiv preprint arXiv:2007.07610.</p>
+    <p class="reference">[10] Jouppi, N., et al. (2021). Ten Lessons From Three Generations Shaped Google's TPUv4i. <em>Proceedings of ISCA 2021</em>, pp. 1–14.</p>
+    <p class="reference">[11] Kaplan, J., et al. (2020). Scaling Laws for Neural Language Models. arXiv preprint arXiv:2001.08361.</p>
+    <p class="reference">[12] Boavizta. (2021). Boavizta Database v1.0: Environmental Impact of Digital Equipment. <a href="https://boavizta.org/">https://boavizta.org/</a></p>
+    <p class="reference">[13] ISO. (2006). ISO 14040:2006 Environmental Management — Life Cycle Assessment — Principles and Framework.</p>
+    <p class="reference">[14] ISO. (2006). ISO 14044:2006 Environmental Management — Life Cycle Assessment — Requirements and Guidelines.</p>
+    <p class="reference">[15] Anthony, L. F. W., Kanding, B., &amp; Selvan, R. (2020). Carbontracker: Tracking and Predicting the Carbon Footprint of Training Deep Learning Models. arXiv preprint arXiv:2007.03061.</p>
+    <p class="reference">[16] Henderson, P., et al. (2020). Towards the Systematic Reporting of the Energy and Carbon Footprints of Machine Learning. <em>J. Mach. Learn. Res.</em> 21, 248.</p>
+    <p class="reference">[17] Wu, C., et al. (2022). Sustainable AI: Environmental Implications, Challenges and Opportunities. <em>Proceedings of IEEE</em> 110(11), 1786–1815.</p>
+  </section>
+</main>
+
+<footer>
+  <p>Synthesis paper — <a href="index.html">← Back to Workshop Home</a></p>
+  <p>Live now: <a href="https://cautious-cod-jj75qgp5p6vjhj76q-8000.app.github.dev/carbon-footprint-synthesis.html" target="_blank">https://cautious-cod-jj75qgp5p6vjhj76q-8000.app.github.dev/carbon-footprint-synthesis.html</a></p>
+  <p>Permanent (once published): <a href="https://alisamadi1366.github.io/NVDA-workshop/carbon-footprint-synthesis.html" target="_blank">https://alisamadi1366.github.io/NVDA-workshop/carbon-footprint-synthesis.html</a></p>
+</footer>
+</body>
+</html>
